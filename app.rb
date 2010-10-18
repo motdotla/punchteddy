@@ -8,6 +8,10 @@ configure :development do
   DataMapper.setup(:default, "sqlite3://#{File.expand_path(File.dirname(__FILE__))}/db/punchteddy_development.db")
 end
 
+configure :production do
+  DataMapper.setup(:default, "sqlite3://#{File.expand_path(File.dirname(__FILE__))}/db/punchteddy_production.db")
+end
+
 class Person
   include DataMapper::Resource
   include DataMapper::Timestamp
