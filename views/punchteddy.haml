@@ -1,0 +1,20 @@
+.container{:style => "text-align: center"}
+  - if @teddy.health > 0
+    %img{:src => "/images/teddy.jpg"}
+  
+    %p{:style => "font-size:40px;"}
+      = "'#{@teddy_response}'"
+     
+    %p{:style => "font-size:50px;"}
+      %a{:href => "/punchteddy/#{@teddy.id}/#{@you.id}"} Punch Teddy
+     
+  - else
+    %img{:src => "/images/teddy.jpg"}
+  
+    %p{:style => "font-size:40px;"}
+      You beat up Teddy. It took you
+      = @you.punch_count 
+      punches.
+      Weak Sauce!
+      %a{:href => "/"} Try again.
+      

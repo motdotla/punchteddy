@@ -1,5 +1,8 @@
-%h1
-  Punch Teddy
+.container{:style => "text-align: center"}
+  %img{:src => "images/teddy.jpg"}
 
-%p 
-  %a{:href => "/punchteddy"} Punch Teddy
+  %p{:style => "font-size:40px;"}
+    &nbsp;
+    
+  %p{:style => "font-size:50px;"}
+    %a{:href => "/punchteddy/#{@teddy.id}/#{@you.id}"} Punch Teddy
