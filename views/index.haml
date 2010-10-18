@@ -2,15 +2,7 @@
   %img{:src => "images/teddy.jpg"}
 
   %p{:style => "font-size:40px;"}
-    Teddy has been punched
-    = Person.sum(:punch_count)
-    times
-    and beaten up
-    = Person.count(:health.lte => 0)
-    times.
-    %br
-    %small{:style => "font-size:11px;"}
-      You people are messed up, but he still laughs at u.
+    &nbsp;
     
   %p{:style => "font-size:50px;"}
     %a{:href => "/punchteddy/#{@teddy.id}/#{@you.id}"} Punch Teddy
