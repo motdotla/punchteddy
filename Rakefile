@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'rake'
-require 'spec/rake/spectask'
 
 namespace :db do
   desc "Auto migrate the database (destroys data)"
