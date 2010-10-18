@@ -2,6 +2,7 @@ require 'rubygems'
 require 'sinatra'
 require 'haml'
 require 'dm-sqlite-adapter'
+require 'dm-postgres-adapter'
 require 'data_mapper'
 
 configure :development do
