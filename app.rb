@@ -9,7 +9,7 @@ configure :development do
 end
 
 configure :production do
-  DataMapper.setup(:default, "sqlite3://#{File.expand_path(File.dirname(__FILE__))}/db/punchteddy_production.db")
+  DataMapper.setup(:default, ENV['DATABASE_URL'])
 end
 
 class Person
