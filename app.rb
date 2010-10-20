@@ -62,7 +62,7 @@ get "/punchteddy/:teddy/:you" do
   if rand(3) == 0
     @teddy_response = teddy_punch_response[rand(teddy_punch_response.length-1)]
     @teddy_punched_you = true
-    @teddy.punch(@you, 30)
+    @teddy.punch(@you, 35)
   else
     @teddy_response = teddy_response[rand(teddy_response.length-1)]
   end
