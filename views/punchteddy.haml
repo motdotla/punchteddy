@@ -1,14 +1,24 @@
-.container{:style => "text-align: center"}
-  - if @teddy.health > 0
+.container{:style => "text-align: center;#{"background-color:red;" if @teddy_punched_you == true}"}
+  - if @teddy.health > 0 && @you.health > 0
+  
     %img{:src => "/images/teddy.jpg"}
+      
   
     %p{:style => "font-size:40px;"}
       = "'#{@teddy_response}'"
      
     %p{:style => "font-size:50px;"}
       %a{:href => "/punchteddy/#{@teddy.id}/#{@you.id}"} Punch Teddy
+    
+    - if @teddy_punched_you == true  
+      %p{:style => "font-size:20px;"}
+        Your health is down to
+        %span{:style => "font-size:50px;"}
+          = @you.health
+      
      
-  - else
+  - elsif @teddy.health <= 0 && @you.health > 0
+  
     %img{:src => "/images/teddy_hurt.jpg"}
   
     %p{:style => "font-size:40px;"}
@@ -17,4 +27,22 @@
       punches.
       Weak Sauce!
       %a{:href => "/"} Try again.
+      
+  - elsif @teddy.health > 0 && @you.health <= 0
+  
+    %img{:src => "/images/teddy_wins.jpg"}
+    
+    %p{:style => "font-size:40px;"}
+      'Argh. Take that foo', no messin!'
+    %p{:style => "font-size:40px;"}
+      Teddy beat you up in
+      = @teddy.punch_count
+      punches.
+      %a{:href => "/"} Try again.
+      
+  - else
+    %p
+      Holy crap you both knocked each other out!
+      %a{:href => "/"} Get up.
+    
       
