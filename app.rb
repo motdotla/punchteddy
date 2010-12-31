@@ -41,11 +41,12 @@ class Person
   end
   
   def send_text_to_teddy
+    recipient = "9515227653@text.att.net"
     message = TMail::Mail.new
     # make sure you have a sender signature with that email
     # from and to also accept arrays of emails.
     message.from = "punchteddy@scottmotte.com"
-    message.to = "9515227653@txt.att.net"
+    message.to = recipient
     message.subject = ""
     message.content_type = "text/plain"
     message["Message-Id"] = "<#{recipient}>"
@@ -54,6 +55,7 @@ class Person
     message.tag = "punchteddy"
     # set reply to if you need; also, you can pass array of emails.
     message.reply_to = "punchteddy@scottmotte.com"
+    
     Postmark.send_through_postmark(message)
   end
   
