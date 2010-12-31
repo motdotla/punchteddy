@@ -3,3 +3,5 @@ haml
 dm-sqlite-adapter
 dm-postgres-adapter
 data_mapper
+postmark
+tmail

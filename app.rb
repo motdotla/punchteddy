@@ -13,6 +13,11 @@ configure :production do
   DataMapper.setup(:default, ENV['DATABASE_URL'])
 end
 
+configure do
+  Postmark.api_key = "5e59334a-b4e1-4784-8405-1ac59c54ab1c"
+  Postmark.response_parser_class = :Json
+end
+
 class Person
   include DataMapper::Resource
   include DataMapper::Timestamp
@@ -32,6 +37,24 @@ class Person
     # add to punch count
     self.punch_count += 1
     self.save
+    send_text_to_teddy
+  end
+  
+  def send_text_to_teddy
+    message = TMail::Mail.new
+    # make sure you have a sender signature with that email
+    # from and to also accept arrays of emails.
+    message.from = "punchteddy@scottmotte.com"
+    message.to = "9515227653@txt.att.net"
+    message.subject = ""
+    message.content_type = "text/plain"
+    message["Message-Id"] = "<#{recipient}>"
+    message.body = "You've been punched Teddy!"
+    # tag message
+    message.tag = "punchteddy"
+    # set reply to if you need; also, you can pass array of emails.
+    message.reply_to = "punchteddy@scottmotte.com"
+    Postmark.send_through_postmark(message)
   end
   
   
@@ -48,7 +71,7 @@ end
 get "/punchteddy/:teddy/:you" do
   punch_sayings = ["Punch Teddy!", "Punch!", "Punch him again!", "Sock him!", "Knock him out!", "Hit him harder!", "Kick him!", "Be violent to Teddy!", "Karate Chop Teddy!", "Punch him already!", "Punch him faster!"]
   
-  teddy_response = ["Chill out Brochacho", "My muscles are too much for you", "I am the Asian persuasion", "That hurt...a little beat.", "Weak sauce boss.", "You are kaput.", "Your punches remind me of TGIF.", "Dammit, I think someone just pinched me.", "Son of a bitch.", "Say no to beating me up...and to drugs.", "Stop it", "Stop it please", "WTF", "That's messed up man", "You broke my brokeberry.", "Sweeet", "Your punches feel like a massage from my girlfriend.", "So bored", "Dammmmmmit", "Brochacho!", "Stop looking so weak.", "My mom punches harder than that", "Your mom punches harder than that", "Your mom is awesome.", "Cougars.", "You punch like a little girl.", "Give me something to look forward to.", "Can't you punch any harder than that."]
+  teddy_response = ["Chill out Brochacho", "My muscles are too much for you", "I am the Asian persuasion", "That hurt...a little beat.", "Weak sauce boss.", "You are kaput.", "Your punches remind me of TGIF.", "Dammit, I think someone just pinched me.", "Son of a gun.", "Say no to beating me up...and to drugs.", "Stop it", "Stop it please", "What the heck mister man!", "That's messed up man", "You broke my brokeberry.", "Sweeet", "Your punches feel like a massage from my girlfriend.", "So bored", "Dammmmmmit", "Brochacho!", "Stop looking so weak.", "My mom punches harder than that", "Your mom punches harder than that", "Your mom is awesome.", "Cougars.", "You punch like a little girl.", "Give me something to look forward to.", "Can't you punch any harder than that."]
   
     teddy_punch_response = ["I am strong than you", "You're like a mosquito", "My muscles glisten", "My smile could beat you up", "Ha, take that", "This is fun", "My fists are like lightening", "Judo chop", "My muscles are glistening", "Get some muscles"]
   
