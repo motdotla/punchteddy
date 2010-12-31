@@ -53,7 +53,7 @@ class Person
     message.subject = ""
     message.content_type = "text/plain"
     message["Message-Id"] = "<#{recipient}>"
-    message.body = "You've been punched Teddy!"
+    message.body = "You've been punched, Teddy! ~http://punchteddy.heroku.com"
     # tag message
     message.tag = "punchteddy"
     # set reply to if you need; also, you can pass array of emails.
