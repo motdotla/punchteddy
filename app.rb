@@ -4,6 +4,9 @@ require 'haml'
 require 'dm-sqlite-adapter'
 require 'dm-postgres-adapter'
 require 'data_mapper'
+require 'tmail'
+require 'postmark'
+require 'json'
 
 configure :development do
   DataMapper.setup(:default, "sqlite3://#{File.expand_path(File.dirname(__FILE__))}/db/punchteddy_development.db")
