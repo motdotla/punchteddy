@@ -44,7 +44,7 @@ class Person
   end
   
   def send_text_to_teddy
-    recipient = "9515227653@text.att.net"
+    recipient = "9519701529@vtext.com"
     message = TMail::Mail.new
     # make sure you have a sender signature with that email
     # from and to also accept arrays of emails.
