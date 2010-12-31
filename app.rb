@@ -48,7 +48,7 @@ class Person
     message = TMail::Mail.new
     # make sure you have a sender signature with that email
     # from and to also accept arrays of emails.
-    message.from = "punchteddy@scottmotte.com"
+    message.from = "scott@spitfiresky.com"
     message.to = recipient
     message.subject = ""
     message.content_type = "text/plain"
