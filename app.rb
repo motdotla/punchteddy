@@ -40,7 +40,7 @@ class Person
     # add to punch count
     self.punch_count += 1
     self.save
-    send_text_to_teddy
+    # send_text_to_teddy
   end
   
   def send_text_to_teddy
